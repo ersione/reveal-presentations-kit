@@ -1,0 +1,467 @@
+/**
+ * Obsidian Wave Theme for reveal.js
+ * Dark editorial presentation theme with geometric texture and dual-color accent bars.
+ */
+
+
+// Default mixins and settings -----------------
+@use "sass:color";
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #111111;
+
+$mainColor: #fff;
+$headingColor: #fff;
+
+$mainFontSize: 42px;
+$mainFont: 'Helvetica Neue Medium', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif;
+$headingFont: 'League Gothic', 'Futura Condensed', 'Helvetica Neue', sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: -0.02em;
+$headingTextTransform: uppercase;
+$headingFontWeight: 900;
+$codeFont: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+$linkColor: #2563eb;
+$linkColorHover: #e63946;
+$selectionBackgroundColor: rgba($linkColor, 0.75);
+
+$heading1Size: 3.6em;
+$heading2Size: 2.1em;
+$heading3Size: 1.1em;
+$heading4Size: 1.0em;
+
+// Theme variables
+$themeAccentPrimary: #2563eb;
+$themeAccentSecondary: #e63946;
+$themeTextMuted: #999;
+$themeBodyFont: 'Helvetica Neue', 'Helvetica Neue Light', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+$themeBodyFontLight: 'Helvetica Neue Light', 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
+
+// Light background text color
+@include light-bg-text-color(#222);
+
+// Viewport background (outside slides) — pure black
+@mixin bodyBackground() {
+  background: #000000;
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+
+// ── Theme Overrides ──────────────────────────────────────────
+
+// Expose theme tokens as CSS custom properties
+:root {
+  --theme-accent-primary: #{$themeAccentPrimary};
+  --theme-accent-secondary: #{$themeAccentSecondary};
+  --theme-text-muted: #{$themeTextMuted};
+  --theme-heading-font: #{$headingFont};
+  --theme-body-font: #{$themeBodyFont};
+  --theme-body-font-light: #{$themeBodyFontLight};
+  --theme-code-font: #{$codeFont};
+}
+
+
+// ── Slide Base ──────────────────────────────────────────────
+
+// Prevent slide-background from duplicating pattern/decorations
+.reveal .backgrounds .slide-background {
+  background-image: none !important;
+  &::before, &::after { display: none !important; }
+}
+
+.reveal .slides section {
+  background-color: $backgroundColor;
+  background-image:
+    linear-gradient(30deg, rgba(255,255,255,0.025) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.025) 87.5%),
+    linear-gradient(150deg, rgba(255,255,255,0.025) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.025) 87.5%),
+    linear-gradient(30deg, rgba(255,255,255,0.025) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.025) 87.5%),
+    linear-gradient(150deg, rgba(255,255,255,0.025) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.025) 87.5%),
+    linear-gradient(60deg, rgba(255,255,255,0.035) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.035) 75%),
+    linear-gradient(60deg, rgba(255,255,255,0.035) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,0.035) 75%);
+  background-size: 120px 210px;
+  background-position: 0 0, 0 0, 60px 105px, 60px 105px, 0 0, 60px 105px;
+  padding: 40px 75px 45px !important;
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100% !important;
+}
+
+// Top accent bar (section only — prevent doubling on .slide-background)
+.reveal .slides > section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    $themeAccentPrimary 0%, $themeAccentPrimary 50%,
+    $themeAccentSecondary 50%, $themeAccentSecondary 100%);
+}
+
+// Watermark (section only)
+.reveal .slides > section::after {
+  content: 'OBSIDIAN';
+  position: absolute;
+  bottom: 14px;
+  right: 75px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.15);
+  font-family: $headingFont;
+}
+
+
+// ── Typography Overrides ────────────────────────────────────
+
+.reveal h1, .reveal h2, .reveal h3 {
+  text-align: left;
+  margin-top: 0;
+}
+
+.reveal h1 { line-height: 1.0; margin-bottom: 0.2em; }
+.reveal h2 { line-height: 1.1; margin-bottom: 0.25em; }
+.reveal h3 { line-height: 1.2; margin-bottom: 0.15em; color: rgba(255,255,255,0.85); }
+
+.reveal p, .reveal li, .reveal td, .reveal th {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.72em;
+  line-height: 1.4;
+  font-family: $themeBodyFont;
+}
+
+.reveal p { margin: 6px 0; }
+.reveal ul, .reveal ol { margin: 3px 0 3px 0.5em; }
+.reveal li { margin-bottom: 2px; }
+
+.reveal strong { color: white; font-weight: 700; }
+.reveal em { color: $themeAccentSecondary; font-style: normal; font-weight: 600; }
+
+
+// ── Blockquote ──────────────────────────────────────────────
+
+.reveal blockquote {
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid $themeAccentSecondary;
+  padding: 12px 20px;
+  margin: 10px 0;
+  font-style: normal;
+  width: 90%;
+  box-shadow: none;
+}
+.reveal blockquote p { color: rgba(255,255,255,0.95); font-size: 0.9em; }
+
+
+// ── Code ────────────────────────────────────────────────────
+
+.reveal pre {
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 12px 18px;
+  width: 95%;
+  box-shadow: none;
+  margin: 8px 0;
+}
+.reveal pre code {
+  font-size: 0.85em;
+  line-height: 1.45;
+  color: #e0e0e0;
+  max-height: 600px;
+  padding: 0;
+}
+.reveal pre code.hljs {
+  padding: 12px 18px;
+}
+
+
+// ── Table ───────────────────────────────────────────────────
+
+.reveal table {
+  border-collapse: collapse;
+  width: 95%;
+  margin: 8px 0;
+  font-size: 0.65em;
+}
+.reveal table th {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-family: $headingFont;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  padding: 7px 14px;
+  border-bottom: 2px solid $themeAccentSecondary;
+}
+.reveal table td {
+  padding: 5px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.reveal table tr:hover td { background: rgba(255,255,255,0.03); }
+
+
+// ── Components ──────────────────────────────────────────────
+
+.chapter-label {
+  font-size: 0.55em !important;
+  color: $themeTextMuted !important;
+  font-style: italic;
+  text-transform: none !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px !important;
+  margin-top: 0 !important;
+  font-family: $themeBodyFontLight !important;
+}
+
+.highlight-box {
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid $themeAccentPrimary;
+  padding: 8px 16px;
+  margin: 6px 0;
+  border-radius: 0 4px 4px 0;
+  h3 { margin-bottom: 4px; }
+  ul, ol { margin: 3px 0 3px 0.5em; }
+  li { margin-bottom: 1px; }
+}
+
+.step-flow {
+  font-family: $codeFont;
+  font-size: 0.78em !important;
+  line-height: 1.45 !important;
+  color: rgba(255,255,255,0.85);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.badge-ai { background: $themeAccentSecondary; color: white; }
+.badge-mcp { background: $themeAccentPrimary; color: white; }
+
+
+// ── Layout ──────────────────────────────────────────────────
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 10px;
+  > div h3 { font-size: 1.0em; margin-bottom: 8px; }
+}
+
+
+// ── Title Slide ─────────────────────────────────────────────
+
+.title-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px !important;
+  &::after { display: none; }
+  h1 {
+    font-size: 4.6em;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    font-size: 1.1em;
+    color: rgba(255,255,255,0.5);
+    margin-top: 15px;
+    font-weight: 400;
+    text-transform: none;
+    font-family: $themeBodyFontLight;
+    border-left: 3px solid $themeAccentSecondary;
+    padding-left: 16px;
+  }
+  .meta {
+    font-size: 0.62em;
+    color: rgba(255,255,255,0.35);
+    margin-top: 50px;
+    font-family: $themeBodyFontLight;
+    letter-spacing: 0.1em;
+  }
+  .title-badge {
+    display: inline-block;
+    font-family: $headingFont;
+    font-size: 0.55em;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 18px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .title-accent {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $themeAccentPrimary, $themeAccentSecondary);
+    margin-top: 25px;
+    border-radius: 2px;
+  }
+}
+
+
+// ── Section Divider ─────────────────────────────────────────
+
+.section-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  h2 {
+    text-align: center !important;
+    font-size: 3.2em;
+  }
+}
+
+
+// ── Slide Variants ──────────────────────────────────────────
+
+// Solid black background, no geometric pattern
+.plain-black {
+  background-image: none !important;
+  background-color: #000000 !important;
+}
+
+// Light/beige background (speaker profile, blank slides)
+.light-slide {
+  background-color: #f5f0eb !important;
+  background-image: none !important;
+  &::before {
+    background: linear-gradient(90deg,
+      $themeAccentPrimary 0%, $themeAccentPrimary 50%,
+      $themeAccentSecondary 50%, $themeAccentSecondary 100%) !important;
+  }
+  &::after { display: none; }
+  h2, h3 { color: #111 !important; }
+  p, li { color: #333 !important; }
+}
+
+// Colorful geometric strip at bottom
+.colorful-strip::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 80px !important;
+  background: 
+    linear-gradient(60deg, #e63946 0%, #e63946 10%, #2563eb 10%, #2563eb 20%, #ffd60a 20%, #ffd60a 30%, #06d6a0 30%, #06d6a0 40%, #ff6b35 40%, #ff6b35 50%, #ffffff 50%, #ffffff 60%, #2563eb 60%, #2563eb 70%, #e63946 70%, #e63946 80%, #06d6a0 80%, #06d6a0 90%, #ffd60a 90%, #ffd60a 100%) !important;
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+  color: transparent !important;
+  font-family: inherit !important;
+}
+
+// Event title centered with logo inline
+.event-title {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  &::after { display: none; }
+  h1, h2 {
+    text-align: center !important;
+    text-transform: uppercase;
+  }
+  .meta {
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.6);
+    margin-top: 15px;
+    font-family: $themeBodyFontLight;
+    letter-spacing: 0.05em;
+  }
+}
+
+// Colorful full-bleed background
+.colorful-bg {
+  background-image: 
+    linear-gradient(60deg, #e63946 0%, #2563eb 25%, #ffd60a 40%, #06d6a0 55%, #ff6b35 70%, #2563eb 85%, #e63946 100%) !important;
+  &::before { display: none; }
+  h1, h2 { color: #000 !important; }
+}
+
+// Photo background slide (full bleed)
+.photo-bg {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  &::before {
+    background: linear-gradient(90deg,
+      #06d6a0, #ffd60a, #2563eb, #e63946) !important;
+    height: 3px !important;
+  }
+  h2 {
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    font-size: 3.2em;
+    text-align: center !important;
+  }
+}
+
+// Thank You with centered white banner
+.thank-you-banner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  &::after { display: none; }
+  .banner {
+    background: white;
+    padding: 30px 80px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+    h2 { color: #000 !important; text-align: center !important; font-size: 3em; }
+  }
+}
+
+
+// ── Slide Number ────────────────────────────────────────────
+
+.reveal .slide-number { color: rgba(255,255,255,0.3); font-size: 12px; }
+
+.reveal .progress {
+  background: rgba(255,255,255,0.08);
+  bottom: auto;
+  color: transparent;
+  display: block;
+  height: 5px;
+  left: 0;
+  top: 0;
+}
+
+.reveal .progress span {
+  background: linear-gradient(90deg, $themeAccentPrimary 0%, $themeAccentSecondary 100%);
+  border-radius: 0 999px 999px 0;
+}
+
+
+// ── PDF Export ──────────────────────────────────────────────
+
+html.print-pdf .reveal .slides section {
+  padding: 40px 75px 45px !important;
+  box-sizing: border-box !important;
+}
+
+html.print-pdf .reveal .slides section.title-slide {
+  padding: 60px 80px !important;
+}
+

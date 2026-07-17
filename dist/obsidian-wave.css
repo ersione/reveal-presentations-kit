@@ -1,0 +1,786 @@
+/**
+ * Obsidian Wave Theme for reveal.js
+ * Dark editorial presentation theme with geometric texture and dual-color accent bars.
+ */
+section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
+  color: #222;
+}
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+:root {
+  --r-background-color: #111111;
+  --r-main-font: Helvetica Neue Medium, Helvetica Neue, Apple SD Gothic Neo, Noto Sans KR, Arial, sans-serif;
+  --r-main-font-size: 42px;
+  --r-main-color: #fff;
+  --r-block-margin: 20px;
+  --r-heading-margin: 0 0 20px 0;
+  --r-heading-font: League Gothic, Futura Condensed, Helvetica Neue, sans-serif;
+  --r-heading-color: #fff;
+  --r-heading-line-height: 1.2;
+  --r-heading-letter-spacing: -0.02em;
+  --r-heading-text-transform: uppercase;
+  --r-heading-text-shadow: none;
+  --r-heading-font-weight: 900;
+  --r-heading1-text-shadow: none;
+  --r-heading1-size: 3.6em;
+  --r-heading2-size: 2.1em;
+  --r-heading3-size: 1.1em;
+  --r-heading4-size: 1em;
+  --r-code-font: SF Mono, Fira Code, Consolas, monospace;
+  --r-link-color: #2563eb;
+  --r-link-color-dark: rgb(19.4285714286, 79.6571428571, 211.7714285714);
+  --r-link-color-hover: #e63946;
+  --r-selection-background-color: rgba(37, 99, 235, 0.75);
+  --r-selection-color: #fff;
+  --r-overlay-element-bg-color: 240, 240, 240;
+  --r-overlay-element-fg-color: 0, 0, 0;
+}
+
+.reveal-viewport {
+  background: #000000;
+  background-color: var(--r-background-color);
+}
+
+.reveal {
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: normal;
+  color: var(--r-main-color);
+}
+
+.reveal ::selection {
+  color: var(--r-selection-color);
+  background: var(--r-selection-background-color);
+  text-shadow: none;
+}
+
+.reveal ::-moz-selection {
+  color: var(--r-selection-color);
+  background: var(--r-selection-background-color);
+  text-shadow: none;
+}
+
+.reveal .slides section,
+.reveal .slides section > section {
+  line-height: 1.3;
+  font-weight: inherit;
+}
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: var(--r-heading-margin);
+  color: var(--r-heading-color);
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  line-height: var(--r-heading-line-height);
+  letter-spacing: var(--r-heading-letter-spacing);
+  text-transform: var(--r-heading-text-transform);
+  text-shadow: var(--r-heading-text-shadow);
+  word-wrap: break-word;
+}
+
+.reveal h1 {
+  font-size: var(--r-heading1-size);
+}
+
+.reveal h2 {
+  font-size: var(--r-heading2-size);
+}
+
+.reveal h3 {
+  font-size: var(--r-heading3-size);
+}
+
+.reveal h4 {
+  font-size: var(--r-heading4-size);
+}
+
+.reveal h1 {
+  text-shadow: var(--r-heading1-text-shadow);
+}
+
+/*********************************************
+ * OTHER
+ *********************************************/
+.reveal p {
+  margin: var(--r-block-margin) 0;
+  line-height: 1.3;
+}
+
+/* Remove trailing margins after titles */
+.reveal h1:last-child,
+.reveal h2:last-child,
+.reveal h3:last-child,
+.reveal h4:last-child,
+.reveal h5:last-child,
+.reveal h6:last-child {
+  margin-bottom: 0;
+}
+
+/* Ensure certain elements are never larger than the slide itself */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.reveal strong,
+.reveal b {
+  font-weight: bold;
+}
+
+.reveal em {
+  font-style: italic;
+}
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+
+.reveal ol {
+  list-style-type: decimal;
+}
+
+.reveal ul {
+  list-style-type: disc;
+}
+
+.reveal ul ul {
+  list-style-type: square;
+}
+
+.reveal ul ul ul {
+  list-style-type: circle;
+}
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+  display: block;
+  margin-left: 40px;
+}
+
+.reveal dt {
+  font-weight: bold;
+}
+
+.reveal dd {
+  margin-left: 40px;
+}
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: var(--r-block-margin) auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block;
+}
+
+.reveal q {
+  font-style: italic;
+}
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: var(--r-block-margin) auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: var(--r-code-font);
+  line-height: 1.2em;
+  word-wrap: break-word;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.reveal code {
+  font-family: var(--r-code-font);
+  text-transform: none;
+  tab-size: 2;
+}
+
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 400px;
+  word-wrap: normal;
+}
+
+.reveal .code-wrapper {
+  white-space: normal;
+}
+
+.reveal .code-wrapper code {
+  white-space: pre;
+}
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.reveal table th {
+  font-weight: bold;
+}
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+
+.reveal table th[align=center],
+.reveal table td[align=center] {
+  text-align: center;
+}
+
+.reveal table th[align=right],
+.reveal table td[align=right] {
+  text-align: right;
+}
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reveal sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.reveal sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+.reveal small * {
+  vertical-align: top;
+}
+
+.reveal img {
+  margin: var(--r-block-margin) 0;
+}
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a {
+  color: var(--r-link-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.reveal a:hover {
+  color: var(--r-link-color-hover);
+  text-shadow: none;
+  border: none;
+}
+
+.reveal .roll span:after {
+  color: #fff;
+  background: var(--r-link-color-dark);
+}
+
+/*********************************************
+ * Frame helper
+ *********************************************/
+.reveal .r-frame {
+  border: 4px solid var(--r-main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.reveal a .r-frame {
+  transition: all 0.15s linear;
+}
+
+.reveal a:hover .r-frame {
+  border-color: var(--r-link-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls {
+  color: var(--r-link-color);
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--r-link-color);
+}
+
+/*********************************************
+ * PRINT BACKGROUND
+ *********************************************/
+@media print {
+  .backgrounds {
+    background-color: var(--r-background-color);
+  }
+}
+:root {
+  --theme-accent-primary: #2563eb;
+  --theme-accent-secondary: #e63946;
+  --theme-text-muted: #999;
+  --theme-heading-font: League Gothic, Futura Condensed, Helvetica Neue, sans-serif;
+  --theme-body-font: Helvetica Neue, Helvetica Neue Light, Apple SD Gothic Neo, Noto Sans KR, sans-serif;
+  --theme-body-font-light: Helvetica Neue Light, Helvetica Neue, Apple SD Gothic Neo, sans-serif;
+  --theme-code-font: SF Mono, Fira Code, Consolas, monospace;
+}
+
+.reveal .backgrounds .slide-background {
+  background-image: none !important;
+}
+.reveal .backgrounds .slide-background::before, .reveal .backgrounds .slide-background::after {
+  display: none !important;
+}
+
+.reveal .slides section {
+  background-color: #111111;
+  background-image: linear-gradient(30deg, rgba(255, 255, 255, 0.025) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.025) 87.5%), linear-gradient(150deg, rgba(255, 255, 255, 0.025) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.025) 87.5%), linear-gradient(30deg, rgba(255, 255, 255, 0.025) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.025) 87.5%), linear-gradient(150deg, rgba(255, 255, 255, 0.025) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.025) 87.5%), linear-gradient(60deg, rgba(255, 255, 255, 0.035) 25%, transparent 25.5%, transparent 75%, rgba(255, 255, 255, 0.035) 75%), linear-gradient(60deg, rgba(255, 255, 255, 0.035) 25%, transparent 25.5%, transparent 75%, rgba(255, 255, 255, 0.035) 75%);
+  background-size: 120px 210px;
+  background-position: 0 0, 0 0, 60px 105px, 60px 105px, 0 0, 60px 105px;
+  padding: 40px 75px 45px !important;
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100% !important;
+}
+
+.reveal .slides > section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb 0%, #2563eb 50%, #e63946 50%, #e63946 100%);
+}
+
+.reveal .slides > section::after {
+  content: "OBSIDIAN";
+  position: absolute;
+  bottom: 14px;
+  right: 75px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.15);
+  font-family: "League Gothic", "Futura Condensed", "Helvetica Neue", sans-serif;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  text-align: left;
+  margin-top: 0;
+}
+
+.reveal h1 {
+  line-height: 1;
+  margin-bottom: 0.2em;
+}
+
+.reveal h2 {
+  line-height: 1.1;
+  margin-bottom: 0.25em;
+}
+
+.reveal h3 {
+  line-height: 1.2;
+  margin-bottom: 0.15em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.reveal p, .reveal li, .reveal td, .reveal th {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.72em;
+  line-height: 1.4;
+  font-family: "Helvetica Neue", "Helvetica Neue Light", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+.reveal p {
+  margin: 6px 0;
+}
+
+.reveal ul, .reveal ol {
+  margin: 3px 0 3px 0.5em;
+}
+
+.reveal li {
+  margin-bottom: 2px;
+}
+
+.reveal strong {
+  color: white;
+  font-weight: 700;
+}
+
+.reveal em {
+  color: #e63946;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.reveal blockquote {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #e63946;
+  padding: 12px 20px;
+  margin: 10px 0;
+  font-style: normal;
+  width: 90%;
+  box-shadow: none;
+}
+
+.reveal blockquote p {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.9em;
+}
+
+.reveal pre {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 12px 18px;
+  width: 95%;
+  box-shadow: none;
+  margin: 8px 0;
+}
+
+.reveal pre code {
+  font-size: 0.85em;
+  line-height: 1.45;
+  color: #e0e0e0;
+  max-height: 600px;
+  padding: 0;
+}
+
+.reveal pre code.hljs {
+  padding: 12px 18px;
+}
+
+.reveal table {
+  border-collapse: collapse;
+  width: 95%;
+  margin: 8px 0;
+  font-size: 0.65em;
+}
+
+.reveal table th {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-family: "League Gothic", "Futura Condensed", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  padding: 7px 14px;
+  border-bottom: 2px solid #e63946;
+}
+
+.reveal table td {
+  padding: 5px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reveal table tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.chapter-label {
+  font-size: 0.55em !important;
+  color: #999 !important;
+  font-style: italic;
+  text-transform: none !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px !important;
+  margin-top: 0 !important;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", "Apple SD Gothic Neo", sans-serif !important;
+}
+
+.highlight-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #2563eb;
+  padding: 8px 16px;
+  margin: 6px 0;
+  border-radius: 0 4px 4px 0;
+}
+.highlight-box h3 {
+  margin-bottom: 4px;
+}
+.highlight-box ul, .highlight-box ol {
+  margin: 3px 0 3px 0.5em;
+}
+.highlight-box li {
+  margin-bottom: 1px;
+}
+
+.step-flow {
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 0.78em !important;
+  line-height: 1.45 !important;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.badge-ai {
+  background: #e63946;
+  color: white;
+}
+
+.badge-mcp {
+  background: #2563eb;
+  color: white;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 10px;
+}
+.two-col > div h3 {
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.title-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px !important;
+}
+.title-slide::after {
+  display: none;
+}
+.title-slide h1 {
+  font-size: 4.6em;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.title-slide .subtitle {
+  font-size: 1.1em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 15px;
+  font-weight: 400;
+  text-transform: none;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+  border-left: 3px solid #e63946;
+  padding-left: 16px;
+}
+.title-slide .meta {
+  font-size: 0.62em;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 50px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+  letter-spacing: 0.1em;
+}
+.title-slide .title-badge {
+  display: inline-block;
+  font-family: "League Gothic", "Futura Condensed", "Helvetica Neue", sans-serif;
+  font-size: 0.55em;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 18px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.title-slide .title-accent {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #e63946);
+  margin-top: 25px;
+  border-radius: 2px;
+}
+
+.section-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+.section-divider h2 {
+  text-align: center !important;
+  font-size: 3.2em;
+}
+
+.plain-black {
+  background-image: none !important;
+  background-color: #000000 !important;
+}
+
+.light-slide {
+  background-color: #f5f0eb !important;
+  background-image: none !important;
+}
+.light-slide::before {
+  background: linear-gradient(90deg, #2563eb 0%, #2563eb 50%, #e63946 50%, #e63946 100%) !important;
+}
+.light-slide::after {
+  display: none;
+}
+.light-slide h2, .light-slide h3 {
+  color: #111 !important;
+}
+.light-slide p, .light-slide li {
+  color: #333 !important;
+}
+
+.colorful-strip::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 80px !important;
+  background: linear-gradient(60deg, #e63946 0%, #e63946 10%, #2563eb 10%, #2563eb 20%, #ffd60a 20%, #ffd60a 30%, #06d6a0 30%, #06d6a0 40%, #ff6b35 40%, #ff6b35 50%, #ffffff 50%, #ffffff 60%, #2563eb 60%, #2563eb 70%, #e63946 70%, #e63946 80%, #06d6a0 80%, #06d6a0 90%, #ffd60a 90%, #ffd60a 100%) !important;
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+  color: transparent !important;
+  font-family: inherit !important;
+}
+
+.event-title {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+.event-title::after {
+  display: none;
+}
+.event-title h1, .event-title h2 {
+  text-align: center !important;
+  text-transform: uppercase;
+}
+.event-title .meta {
+  font-size: 0.7em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 15px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.colorful-bg {
+  background-image: linear-gradient(60deg, #e63946 0%, #2563eb 25%, #ffd60a 40%, #06d6a0 55%, #ff6b35 70%, #2563eb 85%, #e63946 100%) !important;
+}
+.colorful-bg::before {
+  display: none;
+}
+.colorful-bg h1, .colorful-bg h2 {
+  color: #000 !important;
+}
+
+.photo-bg {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.photo-bg::before {
+  background: linear-gradient(90deg, #06d6a0, #ffd60a, #2563eb, #e63946) !important;
+  height: 3px !important;
+}
+.photo-bg h2 {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  font-size: 3.2em;
+  text-align: center !important;
+}
+
+.thank-you-banner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+.thank-you-banner::after {
+  display: none;
+}
+.thank-you-banner .banner {
+  background: white;
+  padding: 30px 80px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+.thank-you-banner .banner h2 {
+  color: #000 !important;
+  text-align: center !important;
+  font-size: 3em;
+}
+
+.reveal .slide-number {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 12px;
+}
+
+.reveal .progress {
+  background: rgba(255, 255, 255, 0.08);
+  bottom: auto;
+  color: transparent;
+  display: block;
+  height: 5px;
+  left: 0;
+  top: 0;
+}
+
+.reveal .progress span {
+  background: linear-gradient(90deg, #2563eb 0%, #e63946 100%);
+  border-radius: 0 999px 999px 0;
+}
+
+html.print-pdf .reveal .slides section {
+  padding: 40px 75px 45px !important;
+  box-sizing: border-box !important;
+}
+
+html.print-pdf .reveal .slides section.title-slide {
+  padding: 60px 80px !important;
+}

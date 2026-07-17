@@ -1,0 +1,436 @@
+/**
+ * Mint Pop Theme for reveal.js
+ *
+ * Bright pastel welcome-party theme based on the riderbranding_YDJ_welcome
+ * reference: mint wash background, rounded white cards, chunky Korean display
+ * type, teal/pink emphasis, badges, and twinkling star details.
+ */
+
+@use "sass:color";
+@import "../template/mixins";
+@import "../template/settings";
+
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Gaegu:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap");
+
+$backgroundColor: #d6faf8;
+
+$mainColor: #2b3a52;
+$headingColor: #2b3a52;
+
+$mainFontSize: 40px;
+$mainFont: 'Jua', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+$headingFont: 'Jua', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: 0;
+$headingTextTransform: none;
+$headingFontWeight: 400;
+$codeFont: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+$linkColor: #159c98;
+$linkColorHover: #ff9ec4;
+$selectionBackgroundColor: rgba($linkColor, 0.25);
+$selectionColor: #2b3a52;
+
+$heading1Size: 3.4em;
+$heading2Size: 2.3em;
+$heading3Size: 1.2em;
+$heading4Size: 1.0em;
+
+$mint: #2AC1BC;
+$mintDeep: #159c98;
+$mintLight: #8ff0ec;
+$mintPale: #d6faf8;
+$cream: #fffdf6;
+$ink: #2b3a52;
+$yellow: #ffd23f;
+$pink: #c91f74;
+$coral: #ff8b6b;
+$lav: #b8a8ff;
+$muted: #6a7b93;
+$bodyFont: 'Jua', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+$handFont: 'Gaegu', 'Apple SD Gothic Neo', cursive;
+$latinFont: 'Fredoka', 'Jua', sans-serif;
+
+@include light-bg-text-color($ink);
+
+@mixin bodyBackground() {
+  background:
+    radial-gradient(1200px 600px at 20% 0%, #eafffe 0%, transparent 60%),
+    radial-gradient(1000px 700px at 100% 100%, #fff0f7 0%, transparent 55%),
+    linear-gradient(160deg, #d6faf8 0%, #eafcfb 45%, #fff6fb 100%);
+}
+
+@import "../template/theme";
+
+:root {
+  --mint-pop-mint: #{$mint};
+  --mint-pop-mint-deep: #{$mintDeep};
+  --mint-pop-mint-light: #{$mintLight};
+  --mint-pop-mint-pale: #{$mintPale};
+  --mint-pop-cream: #{$cream};
+  --mint-pop-ink: #{$ink};
+  --mint-pop-yellow: #{$yellow};
+  --mint-pop-pink: #{$pink};
+  --mint-pop-coral: #{$coral};
+  --mint-pop-lav: #{$lav};
+  --mint-pop-muted: #{$muted};
+  --mint-pop-heading-font: #{$headingFont};
+  --mint-pop-body-font: #{$bodyFont};
+  --mint-pop-hand-font: #{$handFont};
+  --mint-pop-latin-font: #{$latinFont};
+}
+
+.reveal-viewport {
+  overflow: hidden;
+}
+
+.reveal {
+  -webkit-font-smoothing: antialiased;
+}
+
+.reveal .slides section {
+  background:
+    radial-gradient(1200px 600px at 20% 0%, #eafffe 0%, transparent 60%),
+    radial-gradient(1000px 700px at 100% 100%, #fff0f7 0%, transparent 55%),
+    linear-gradient(160deg, #d6faf8 0%, #eafcfb 45%, #fff6fb 100%);
+  color: $ink;
+  padding: 48px 72px 64px !important;
+  overflow: hidden;
+  text-align: center;
+}
+
+.reveal .slides section::before,
+.reveal .slides section::after {
+  position: absolute;
+  color: rgba($yellow, 0.72);
+  content: "★";
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.reveal .slides section::before {
+  top: 8%;
+  right: 18%;
+  font-size: 22px;
+}
+
+.reveal .slides section::after {
+  bottom: 10%;
+  left: 14%;
+  font-size: 18px;
+}
+
+.reveal .slides section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  color: $ink;
+  font-family: $headingFont;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: none;
+}
+
+.reveal h1 {
+  font-size: clamp(30px, 6.2vw, 68px);
+  line-height: 1.12;
+  margin-bottom: 0.2em;
+}
+
+.reveal h2 {
+  font-size: clamp(26px, 4.6vw, 46px);
+  line-height: 1.2;
+  margin-bottom: 0.32em;
+}
+
+.reveal h3 {
+  color: $mintDeep;
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.2;
+}
+
+.reveal p,
+.reveal li,
+.reveal td,
+.reveal th {
+  color: $ink;
+  font-family: $bodyFont;
+  font-size: 0.7em;
+  line-height: 1.55;
+}
+
+.reveal strong { color: $mintDeep; font-weight: 400; }
+.reveal em { color: $pink; font-style: normal; font-weight: 400; }
+.reveal a { color: $mintDeep; text-decoration: underline; }
+
+.title-slide,
+.center-slide {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center !important;
+}
+
+.title-card,
+.mint-card,
+.who-card {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, $mint, $pink, $yellow) border-box;
+  border: 3px solid transparent;
+  border-radius: 38px;
+  box-shadow: 0 30px 70px rgba($mint, 0.22);
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: clamp(30px, 5vw, 60px);
+  position: relative;
+  text-align: center;
+  width: min(960px, 94vw);
+}
+
+.title-card::before,
+.mint-card::before {
+  display: none;
+}
+
+.eyebrow {
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba($mint, 0.18);
+  color: $mintDeep !important;
+  display: inline-block;
+  font-family: $latinFont;
+  font-size: clamp(12px, 1.5vw, 15px) !important;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  margin-bottom: 20px !important;
+  padding: 7px 18px;
+  text-transform: uppercase;
+}
+
+.accent,
+.teal { color: $mintDeep !important; }
+
+.accent-pink,
+.pink {
+  color: $pink !important;
+  text-shadow: none;
+}
+
+.sub,
+.subtitle {
+  color: $muted !important;
+  font-family: $handFont !important;
+  font-size: clamp(16px, 2.2vw, 24px) !important;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-top: 16px !important;
+  text-align: center;
+}
+
+.badge-row,
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.badge,
+.pill {
+  background: $mintPale;
+  border-radius: 999px;
+  color: $mintDeep !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(13px, 1.7vw, 17px) !important;
+  padding: 9px 18px;
+}
+
+.agenda {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.acard,
+.soft-panel {
+  background: #fff;
+  border: 2px solid #fff;
+  border-radius: 26px;
+  box-shadow: 0 16px 34px rgba($ink, 0.10);
+  padding: 26px 18px;
+  text-align: center;
+}
+
+.acard .num {
+  align-items: center;
+  background: $mint;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  font-family: $latinFont;
+  font-size: 34px;
+  font-weight: 700;
+  height: 58px;
+  justify-content: center;
+  margin: 0 auto 14px;
+  transform: rotate(-6deg);
+  width: 58px;
+}
+
+.acard:nth-child(2) .num { background: $pink; }
+.acard:nth-child(3) .num { background: $coral; }
+.acard .t { font-size: clamp(18px, 2.4vw, 24px); }
+.acard .d {
+  color: #7c8aa0;
+  font-family: $handFont;
+  font-size: clamp(14px, 1.8vw, 17px);
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.part-num {
+  color: transparent;
+  font-family: $latinFont;
+  font-size: clamp(60px, 14vw, 150px);
+  font-weight: 700;
+  line-height: 0.9;
+  opacity: 0.85;
+  -webkit-text-stroke: 3px $mint;
+}
+
+.who-card {
+  border-color: $mintPale;
+  box-shadow: 0 26px 60px rgba($ink, 0.14);
+}
+
+.who-q {
+  color: $pink;
+  font-family: $latinFont;
+  font-size: clamp(16px, 2.4vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+
+.who-hint {
+  color: $ink;
+  font-size: clamp(20px, 3.4vw, 34px);
+  line-height: 1.4;
+}
+
+.who-mark {
+  color: $mint;
+  font-size: clamp(50px, 10vw, 96px);
+  line-height: 1;
+  margin: 8px 0 4px;
+}
+
+.name-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.name-cloud .chip {
+  background: $mintPale;
+  border-radius: 999px;
+  color: $mintDeep;
+  font-size: clamp(15px, 2vw, 20px);
+  padding: 10px 18px;
+}
+
+.tip-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 26px auto 0;
+  max-width: 620px;
+  text-align: left;
+}
+
+.tip-step {
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 26px rgba($ink, 0.10);
+  display: flex;
+  gap: 16px;
+  padding: 16px 22px;
+}
+
+.tip-step .dot {
+  align-items: center;
+  background: $mint;
+  border-radius: 14px;
+  color: #fff;
+  display: flex;
+  flex: none;
+  font-family: $latinFont;
+  font-size: 22px;
+  font-weight: 700;
+  height: 44px;
+  justify-content: center;
+  transform: rotate(-5deg);
+  width: 44px;
+}
+
+.tip-step:nth-child(2) .dot { background: $pink; }
+.tip-step:nth-child(3) .dot { background: $coral; }
+.tip-step .tx { font-size: clamp(16px, 2.2vw, 21px); }
+
+.prize {
+  background: $yellow;
+  border-radius: 20px;
+  box-shadow: 0 12px 26px rgba($yellow, 0.45);
+  color: #7a5a00;
+  display: inline-block;
+  font-size: clamp(16px, 2.3vw, 22px);
+  margin-top: 24px;
+  padding: 14px 26px;
+}
+
+.slide-number {
+  color: rgba($ink, 0.45) !important;
+  font-family: $latinFont !important;
+  font-size: 12px !important;
+}
+
+.reveal .progress {
+  background: transparent;
+  bottom: auto;
+  color: transparent;
+  display: block;
+  height: 6px;
+  left: 0;
+  top: 0;
+}
+
+.reveal .progress span {
+  background: linear-gradient(90deg, $mint 0%, $mintLight 55%, $pink 100%);
+  border-radius: 0 999px 999px 0;
+}
+
+@media (max-width: 640px) {
+  .agenda,
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+html.print-pdf .reveal .slides section {
+  padding: 48px 72px 64px !important;
+}

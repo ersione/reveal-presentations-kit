@@ -1,0 +1,514 @@
+/**
+ * Atlas Blue Theme for reveal.js
+ * Clean white editorial theme with blue gradients, grid texture, and photo-centric layouts.
+ */
+
+
+// Default mixins and settings -----------------
+@use "sass:color";
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #ffffff;
+
+$mainColor: #111111;
+$headingColor: #000000;
+
+$mainFontSize: 42px;
+$mainFont: 'Helvetica Neue Medium', 'Helvetica Neue', 'Segoe UI', 'Roboto', Arial, sans-serif;
+$headingFont: 'League Gothic', 'Futura Condensed', 'Helvetica Neue', Arial, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: -0.02em;
+$headingTextTransform: none;
+$headingFontWeight: 900;
+$codeFont: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+
+$linkColor: #2D65A4;
+$linkColorHover: #0E3789;
+$selectionBackgroundColor: rgba($linkColor, 0.3);
+$selectionColor: #000;
+
+$heading1Size: 3.6em;
+$heading2Size: 2.1em;
+$heading3Size: 1.1em;
+$heading4Size: 1.0em;
+
+// Theme variables
+$themeAccentPrimary: #2D65A4;
+$themeAccentSecondary: #0E3789;
+$themeTextMuted: #666666;
+$themeBodyFont: 'Helvetica Neue', 'Segoe UI', 'Roboto', Arial, sans-serif;
+$themeBodyFontLight: 'Helvetica Neue Light', 'Helvetica Neue', 'Segoe UI Light', Arial, sans-serif;
+
+// Dark background text color
+@include dark-bg-text-color(#fff);
+
+// Viewport background (outside slides)
+@mixin bodyBackground() {
+  background: #e8e8e8;
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+
+// ── Theme Overrides ──────────────────────────────────────────
+
+:root {
+  --theme-accent-primary: #{$themeAccentPrimary};
+  --theme-accent-secondary: #{$themeAccentSecondary};
+  --theme-text-muted: #{$themeTextMuted};
+  --theme-heading-font: #{$headingFont};
+  --theme-body-font: #{$themeBodyFont};
+  --theme-body-font-light: #{$themeBodyFontLight};
+  --theme-code-font: #{$codeFont};
+}
+
+
+// ── Slide Base ──────────────────────────────────────────────
+
+.reveal .slides section {
+  background-color: $backgroundColor;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  padding: 40px 75px 45px !important;
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100% !important;
+}
+
+// Top accent — thin black line
+.reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 18px; left: 40px;
+  width: 50px;
+  height: 3px;
+  background: #000000;
+  z-index: 2;
+}
+
+// "Presentation Name" label top-left
+.reveal .slides section::after {
+  content: 'Presentation Name';
+  position: absolute;
+  top: 28px;
+  left: 40px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(0,0,0,0.5);
+  font-family: $themeBodyFontLight;
+  z-index: 2;
+}
+
+
+// ── Typography ──────────────────────────────────────────────
+
+.reveal h1, .reveal h2, .reveal h3 {
+  text-align: left;
+  margin-top: 0;
+  text-transform: none;
+}
+
+.reveal h1 { line-height: 0.95; margin-bottom: 0.15em; color: #000; }
+.reveal h2 { line-height: 1.05; margin-bottom: 0.2em; color: #000; }
+.reveal h3 { line-height: 1.2; margin-bottom: 0.15em; color: #333; font-weight: 700; }
+
+.reveal p, .reveal li, .reveal td, .reveal th {
+  color: $mainColor;
+  font-size: 0.72em;
+  line-height: 1.5;
+  font-family: $themeBodyFont;
+}
+
+.reveal p { margin: 8px 0; }
+.reveal ul, .reveal ol { margin: 5px 0 5px 0.5em; }
+.reveal li { margin-bottom: 3px; }
+
+.reveal strong { color: #000; font-weight: 700; }
+.reveal em { color: $themeAccentPrimary; font-style: italic; font-weight: 600; }
+
+.reveal a { color: $themeAccentPrimary; text-decoration: underline; }
+.reveal a:hover { color: $themeAccentSecondary; }
+
+
+// ── Blockquote ──────────────────────────────────────────────
+
+.reveal blockquote {
+  background: rgba(0,0,0,0.03);
+  border-left: 4px solid $themeAccentPrimary;
+  padding: 12px 20px;
+  margin: 12px 0;
+  font-style: italic;
+  width: 90%;
+  box-shadow: none;
+}
+.reveal blockquote p { color: #222; font-size: 0.9em; }
+
+
+// ── Code ────────────────────────────────────────────────────
+
+.reveal pre {
+  background: #1a1a2e;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 14px 20px;
+  width: 95%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin: 10px 0;
+}
+.reveal pre code {
+  font-size: 0.85em;
+  line-height: 1.45;
+  color: #e0e0e0;
+  max-height: 600px;
+  padding: 0;
+}
+.reveal pre code.hljs {
+  padding: 14px 20px;
+}
+
+
+// ── Table ───────────────────────────────────────────────────
+
+.reveal table {
+  border-collapse: collapse;
+  width: 95%;
+  margin: 10px 0;
+  font-size: 0.65em;
+}
+.reveal table th {
+  background: $themeAccentPrimary;
+  color: white;
+  font-family: $headingFont;
+  font-weight: 700;
+  font-size: 0.85em;
+  padding: 8px 14px;
+  border-bottom: 2px solid $themeAccentSecondary;
+}
+.reveal table td {
+  padding: 6px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.reveal table tr:hover td { background: rgba(0,0,0,0.02); }
+
+
+// ── Components ──────────────────────────────────────────────
+
+.chapter-label {
+  font-size: 0.55em !important;
+  color: $themeTextMuted !important;
+  font-style: italic;
+  text-transform: none !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px !important;
+  margin-top: 0 !important;
+  font-family: $themeBodyFontLight !important;
+}
+
+.highlight-box {
+  background: rgba(0,0,0,0.03);
+  border-left: 4px solid $themeAccentPrimary;
+  padding: 10px 16px;
+  margin: 8px 0;
+  border-radius: 0 6px 6px 0;
+  h3 { margin-bottom: 4px; }
+  ul, ol { margin: 3px 0 3px 0.5em; }
+  li { margin-bottom: 1px; }
+}
+
+.step-flow {
+  font-family: $codeFont;
+  font-size: 0.78em !important;
+  line-height: 1.45 !important;
+  color: rgba(255,255,255,0.9);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.badge-ai { background: $themeAccentSecondary; color: white; }
+.badge-mcp { background: $themeAccentPrimary; color: white; }
+
+
+// ── Layout ──────────────────────────────────────────────────
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 10px;
+  > div h3 { font-size: 1.0em; margin-bottom: 8px; }
+}
+
+.img-placeholder {
+  background: rgba(0,0,0,0.04);
+  border: 1px dashed rgba(0,0,0,0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,0,0,0.25);
+  font-size: 0.65em;
+}
+
+
+// ── Title Slide ─────────────────────────────────────────────
+
+.title-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 75px !important;
+  background-image: none !important;
+  &::before, &::after { display: none; }
+  h1 {
+    font-size: 5em;
+    color: #000;
+    text-transform: none;
+  }
+  .subtitle {
+    font-size: 1.0em;
+    color: $themeTextMuted;
+    margin-top: 10px;
+    font-weight: 400;
+    text-transform: none;
+    font-family: $themeBodyFontLight;
+    font-style: italic;
+  }
+  .meta {
+    font-size: 0.55em;
+    color: rgba(0,0,0,0.4);
+    margin-top: 40px;
+    font-family: $themeBodyFontLight;
+    letter-spacing: 0.1em;
+  }
+  .title-badge {
+    display: inline-block;
+    font-family: $themeBodyFont;
+    font-size: 0.5em;
+    letter-spacing: 0.05em;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+  }
+  .title-accent {
+    width: 60px;
+    height: 4px;
+    background: $themeAccentPrimary;
+    margin-top: 20px;
+    border-radius: 2px;
+  }
+  // "Platform Systems" marquee-style bar
+  .marquee-bar {
+    position: absolute;
+    bottom: 180px;
+    left: 0; right: 0;
+    height: 38px;
+    background: $themeAccentPrimary;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    overflow: hidden;
+    font-family: $headingFont;
+    font-size: 0.45em;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.1em;
+  }
+}
+
+
+// ── Section Divider ─────────────────────────────────────────
+
+.section-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  h2 {
+    text-align: center !important;
+    font-size: 3.2em;
+    color: #000;
+  }
+}
+
+// Chapter divider with big number
+.chapter-divider {
+  display: flex !important;
+  align-items: center !important;
+  gap: 80px;
+  padding: 60px 80px !important;
+  .chapter-num {
+    font-family: $headingFont;
+    font-size: 8em;
+    font-weight: 900;
+    line-height: 0.85;
+    background: linear-gradient(180deg, $themeAccentPrimary 0%, $themeAccentSecondary 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: italic;
+  }
+  h2 {
+    font-size: 3.2em;
+    text-transform: none;
+  }
+}
+
+// Divider with blue gradient panel
+.blue-panel-divider {
+  display: flex !important;
+  padding: 0 !important;
+  background-image: none !important;
+  .panel-blue {
+    flex: 0 0 40%;
+    background: linear-gradient(180deg, $themeAccentPrimary, $themeAccentSecondary);
+    display: flex;
+    align-items: flex-end;
+    padding: 60px 50px;
+    h2 { color: white; font-size: 3em; text-transform: none; }
+  }
+  .panel-image {
+    flex: 1;
+    background: rgba(0,0,0,0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.2);
+    font-size: 0.65em;
+  }
+}
+
+// Dark closing slide
+.dark-slide {
+  background-color: #000 !important;
+  background-image: none !important;
+  &::before {
+    background: white !important;
+  }
+  &::after {
+    color: rgba(255,255,255,0.4) !important;
+  }
+  h2, h3, p, li, td, th, strong { color: rgba(255,255,255,0.9); }
+  a { color: rgba(255,255,255,0.6); font-style: italic; }
+}
+
+// Hero text (centered, large)
+.hero-slide {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-top: 80px !important;
+  text-align: center !important;
+  h2 {
+    text-align: center !important;
+    font-size: 3.5em;
+    color: #000;
+    text-transform: none;
+  }
+}
+
+// ToC with blue gradient background
+.toc-panel {
+  background: linear-gradient(180deg, $themeAccentPrimary, $themeAccentSecondary);
+  color: white;
+  border-radius: 8px;
+  padding: 25px 30px;
+  h3 { color: white; font-size: 1.2em; margin-bottom: 15px; }
+  table { width: 100%; }
+  table td {
+    color: white;
+    border-bottom-color: rgba(255,255,255,0.2);
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+}
+
+
+// ── Split Layout ────────────────────────────────────────────
+
+.split-layout {
+  display: flex !important;
+  flex-direction: row !important;
+  padding: 0 !important;
+
+  .split-left, .split-right {
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photo-box {
+    background: rgba(0,0,0,0.06);
+    border: 2px dashed rgba(0,0,0,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.2);
+    font-size: 0.6em;
+  }
+}
+
+
+// ── Atlas Blue Logo ────────────────────────────────────────────
+
+.atlas-logo {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  font-family: $headingFont;
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(0,0,0,0.7);
+  letter-spacing: 0.05em;
+  &::before {
+    content: '← Atlas Blue';
+  }
+}
+
+
+// ── Slide Number ────────────────────────────────────────────
+
+.reveal .slide-number { color: rgba(0,0,0,0.3); font-size: 12px; }
+
+.reveal .progress {
+  background: rgba(0,0,0,0.06);
+  bottom: auto;
+  color: transparent;
+  display: block;
+  height: 5px;
+  left: 0;
+  top: 0;
+}
+
+.reveal .progress span {
+  background: linear-gradient(90deg, $themeAccentPrimary 0%, $themeAccentSecondary 100%);
+  border-radius: 0 999px 999px 0;
+}
+
+
+// ── PDF Export ──────────────────────────────────────────────
+
+html.print-pdf .reveal .slides section {
+  padding: 40px 75px 45px !important;
+  box-sizing: border-box !important;
+}
+
+html.print-pdf .reveal .slides section.title-slide {
+  padding: 60px 75px !important;
+}
+
