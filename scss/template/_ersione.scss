@@ -1,0 +1,72 @@
+// Shared presentation layouts. Existing deck classes remain supported.
+html, body { width: 100%; height: 100%; margin: 0; }
+.reveal { height: 100%; }
+.reveal .slides { text-align: left; }
+.reveal .slides section {
+ box-sizing: border-box; padding: 96px 112px; height: 100%;
+ background: var(--bg); color: var(--text); text-align: left;
+}
+.reveal .slides section::after {
+ content: 'ERSIONE'; position: absolute; left: 112px; bottom: 38px;
+ font-size: 16px; font-weight: 600; letter-spacing: .12em; color: var(--muted);
+}
+.reveal h1, .reveal h2, .reveal h3 { color: var(--text); text-wrap: balance; line-height: 1.18; }
+.reveal h1 { max-width: 1300px; margin: 32px 0; }
+.reveal h2 { margin-bottom: 48px; }
+.reveal p { line-height: 1.65; max-width: 1380px; }
+.reveal .subtitle, .reveal .sub, .reveal .meta { color: var(--muted); }
+.reveal .subtitle, .reveal .sub { font-size: 30px; line-height: 1.65; }
+.reveal .meta { font-size: 22px; margin-top: 48px; }
+.reveal .title-slide { padding-top: 140px; }
+.reveal .title-slide::before {
+ content: ''; position: absolute; left: 112px; top: 96px; width: 72px; height: 8px;
+ border-radius: 999px; background: var(--accent);
+}
+.reveal .title-badge, .reveal .eyebrow, .reveal .chapter-label {
+ font-size: 20px; color: var(--accent); letter-spacing: .12em; font-weight: 700; text-transform: uppercase;
+}
+.reveal .title-card { max-width: 1450px; padding: 64px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; }
+.reveal .title-card h1 { font-size: 2.45em; }
+.reveal .accent, .reveal .accent-pink { color: var(--accent); }
+.reveal .badge-row, .reveal .name-cloud { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.reveal .badge, .reveal .chip { background: var(--tint); color: var(--accent); padding: 10px 24px; border-radius: 999px; font-size: 22px; }
+.reveal .two-col, .reveal .agenda { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 48px; }
+.reveal .agenda { grid-template-columns: repeat(3, 1fr); }
+.reveal .highlight-box, .reveal .acard, .reveal .who-card {
+ background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 48px; box-shadow: none;
+}
+.reveal .highlight-box h3, .reveal .t { font-size: 36px; font-weight: 700; margin: 20px 0; }
+.reveal .highlight-box p, .reveal .d { font-size: 28px; color: var(--muted); line-height: 1.6; }
+.reveal .num, .reveal .chapter-num, .reveal .part-num { color: var(--accent); font-size: 100px; line-height: 1; font-weight: 700; -webkit-text-stroke: 0; margin-bottom: 32px; }
+.reveal .num { font-size: 52px; }
+.reveal .section-divider, .reveal .chapter-divider { display: flex !important; flex-direction: column; justify-content: center; }
+.reveal .section-divider h2 { font-size: 112px; max-width: 1450px; }
+.reveal .chapter-divider h2 br { display: none; }
+.reveal .chapter-divider p { color: var(--muted); }
+.reveal .photo-box { display: flex; align-items: center; justify-content: center; background: var(--surface); color: var(--muted); border: 1px solid var(--line); border-radius: 20px; width: 34% !important; top: 140px !important; right: 112px !important; bottom: 140px !important; font-size: 24px; }
+.reveal .title-slide:has(.photo-box) h1 { max-width: 1000px; }
+.reveal .title-slide:has(.photo-box) .marquee-bar { max-width: 900px; }
+.reveal .marquee-bar { background: transparent; border: 0; color: var(--muted); max-width: 1100px; font-size: 30px; line-height: 1.6; margin-top: 48px; }
+.reveal .split-layout, .reveal .blue-panel-divider { display: grid !important; grid-template-columns: 1fr 1fr; gap: 48px; }
+.reveal .split-left { background: var(--surface) !important; padding: 56px !important; border: 1px solid var(--line); border-radius: 20px; }
+.reveal .split-left h2 { color: var(--text) !important; font-size: 64px !important; line-height: 1.2 !important; }
+.reveal .split-left div, .reveal .split-left p { color: var(--muted) !important; font-size: 26px !important; }
+.reveal .split-right { padding: 56px 0 !important; }
+.reveal .panel-blue, .reveal .panel-image { background: var(--surface); padding: 64px; border-radius: 20px; border: 1px solid var(--line); }
+.reveal .panel-blue { display: flex; align-items: center; background: var(--tint); }
+.reveal .panel-image { display: flex; align-items: center; justify-content: center; color: var(--muted); }
+.reveal .center-slide { padding-top: 120px; }
+.reveal .who-hint { font-size: 44px; line-height: 1.65; }
+.reveal .who-q { color: var(--accent); font-size: 24px; margin-bottom: 32px; }
+.reveal .who-mark { display: none; }
+.reveal .tip-steps { display: grid; gap: 24px; margin: 40px 0; }
+.reveal .tip-step { display: flex; gap: 24px; align-items: center; padding: 24px 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.reveal .dot { color: var(--accent); font-weight: 700; }
+.reveal .tx, .reveal .prize { font-size: 28px; }
+.reveal .prize { color: var(--muted); }
+.reveal .controls { color: var(--accent); }
+.reveal .progress { height: 4px; color: var(--accent); background: var(--line); }
+.reveal .slide-number { background: transparent; color: var(--muted); font: 18px 'Segoe UI', sans-serif; right: 32px; bottom: 24px; }
+@media print { .reveal .slides section { print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+
+.reveal .light-slide { --bg: #f6f8fc; --surface: #ffffff; --text: #182235; --muted: #526178; --line: #e1e7f0; --accent: #2563eb; --tint: #edf3ff; }

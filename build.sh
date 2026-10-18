@@ -9,9 +9,9 @@ mkdir -p "$DIST_DIR"
 
 echo "Building reveal.js themes..."
 npx sass \
-  "$SCSS_DIR/obsidian-wave.scss:$DIST_DIR/obsidian-wave.css" \
-  "$SCSS_DIR/atlas-blue.scss:$DIST_DIR/atlas-blue.css" \
-  "$SCSS_DIR/mint-pop.scss:$DIST_DIR/mint-pop.css" \
+  "$SCSS_DIR/ersione-dark.scss:$DIST_DIR/ersione-dark.css" \
+  "$SCSS_DIR/ersione-light.scss:$DIST_DIR/ersione-light.css" \
+  "$SCSS_DIR/ersione-mint.scss:$DIST_DIR/ersione-mint.css" \
   --no-source-map \
   --style=expanded
 

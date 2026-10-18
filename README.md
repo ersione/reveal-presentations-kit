@@ -1,95 +1,107 @@
 # reveal-presentations-kit
 
-Standalone reveal.js themes and example decks for fast, offline presentations.
+Three reveal.js presentation themes built from the Ersione design system. Compiled CSS, editable SCSS, example decks and a local reveal.js runtime are included.
 
 ## Themes
 
-| Theme | File | Direction | Best For |
-|-------|------|-----------|----------|
-| **Obsidian Wave** | `dist/obsidian-wave.css` | Dark geometric, high contrast, blue/red accents | Strategy briefs, technical talks, executive summaries |
-| **Atlas Blue** | `dist/atlas-blue.css` | Clean white editorial layout with blue gradients | Corporate decks, planning reviews, photo-led narratives |
-| **Mint Pop** | `dist/mint-pop.css` | Bright pastel mint, rounded cards, playful Korean typography | Onboarding, welcome sessions, lightweight workshops |
+| Theme | Stylesheet | Presentation |
+| --- | --- | --- |
+| Ersione Light | `dist/ersione-light.css` | Light surfaces, dark text and blue accents |
+| Ersione Dark | `dist/ersione-dark.css` | Navy surfaces, light text and soft blue accents |
+| Ersione Mint | `dist/ersione-mint.css` | Pale green background, white cards and deep green accents |
 
-## Quick Start
+Light and Dark use the design system's blue brand tokens. Mint combines its light surface tokens with green data colors; it is a presentation variant rather than a new design-system brand. See [THEME_SOURCE.md](THEME_SOURCE.md) for the mapping, typography and migration notes.
 
-Copy one of the example files and open it in a browser:
+## Quick start
 
-```bash
-cp examples/obsidian-wave-template.html my-presentation.html
-cp examples/atlas-blue-template.html my-presentation.html
-cp examples/mint-pop-template.html my-presentation.html
-```
-
-For PDF export, open the deck with `?print-pdf`, then print from Chrome using landscape, no margins, and background graphics enabled.
-
-## Reveal Options
-
-Each example uses reveal.js configuration near the bottom of the HTML file. The progress bar is enabled in all examples and can be toggled with:
-
-```javascript
-Reveal.initialize({
-  progress: true // set false to hide the progress bar
-});
-```
-
-Each theme styles the progress bar as a thin top strip using its own accent colors.
-
-## Examples
-
-| File | Description |
-|------|-------------|
-| `examples/obsidian-wave-template.html` | Dark geometric presentation sample |
-| `examples/atlas-blue-template.html` | White/blue editorial presentation sample |
-| `examples/mint-pop-template.html` | Pastel welcome-party presentation sample |
-
-## Build
-
-The checked-in CSS in `dist/` is ready to use. Rebuild only if you edit files under `scss/source/`.
+Copy an example into a sibling folder so its relative asset paths keep working:
 
 ```bash
-./build.sh
+git clone https://github.com/ersione/reveal-presentations-kit.git
+cd reveal-presentations-kit
+mkdir -p presentations
+cp examples/ersione-light-template.html presentations/my-talk.html
 ```
 
 On Windows PowerShell:
 
 ```powershell
+New-Item -ItemType Directory -Force presentations
+Copy-Item examples/ersione-light-template.html presentations/my-talk.html
+```
+
+Open `presentations/my-talk.html` directly, or serve the repository root:
+
+```bash
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+On Windows, use `py -m http.server 8000 --bind 127.0.0.1`. Open `http://127.0.0.1:8000/presentations/my-talk.html` and use the arrow controls or keyboard to move through the slides.
+
+Copying an example into the repository root requires changing `../dist/` and `../vendor/` to `./dist/` and `./vendor/`.
+
+## Examples and theme selection
+
+| Example | Included layouts |
+| --- | --- |
+| `examples/ersione-light-template.html` | Title with image placeholder, split content, chapter divider |
+| `examples/ersione-dark-template.html` | Title, two-column cards, section divider, light slide variant |
+| `examples/ersione-mint-template.html` | Title card, overview cards, key idea, next steps |
+
+Each example loads the reveal.js runtime stylesheet before the theme:
+
+```html
+<link rel="stylesheet" href="../vendor/reveal.css">
+<link rel="stylesheet" href="../dist/ersione-light.css">
+```
+
+The themes share layout classes, so an existing deck can switch themes by changing its theme stylesheet. Copying the matching example is the easiest way to start a new deck. Replace image placeholders with your own local images.
+
+## Editing and building
+
+Edit `section` elements to change slide content. No build is needed unless you change SCSS. To rebuild the three checked-in stylesheets:
+
+```bash
+./build.sh
+```
+
+```powershell
 .\build.ps1
 ```
 
-This compiles:
+Both scripts run `npx sass`. Node.js/npm and an available Sass package are required for this step; prepare the compiled CSS before an offline presentation. Check the generated files and slide layouts after rebuilding.
 
 ```text
-scss/source/obsidian-wave.scss -> dist/obsidian-wave.css
-scss/source/atlas-blue.scss    -> dist/atlas-blue.css
-scss/source/mint-pop.scss      -> dist/mint-pop.css
+scss/source/ersione-light.scss -> dist/ersione-light.css
+scss/source/ersione-dark.scss  -> dist/ersione-dark.css
+scss/source/ersione-mint.scss  -> dist/ersione-mint.css
+scss/template/_ersione.scss   # shared presentation layouts
 ```
+
+Presentation options live in each example's `Reveal.initialize(...)` call. The examples use a 1920×1080 canvas, fade transitions, slide numbers and a progress bar. Set `progress: false` to hide the bar.
+
+## Offline use and fonts
+
+The themes make no external font requests. They prefer locally installed Noto Sans KR, with operating-system font fallbacks. Fonts and line breaks may differ across devices. Bring the HTML, `dist/`, `vendor/`, and any images or fonts together, and check on the presentation device without a network connection.
+
+The bundled runtime is reveal.js 5.1.0. This is a minimal kit, not a bundle of every plugin. Code highlighting requires its JavaScript plugin in addition to the included highlight CSS.
+
+## PDF export
+
+Open the presentation over local HTTP with `?print-pdf`, then print from Chrome or Chromium. Check landscape orientation, no margins and background graphics. Inspect the saved PDF for wrapping, clipping and page breaks; browser playback alone does not verify PDF output.
 
 ## Structure
 
 ```text
 reveal-presentations-kit/
-├── build.ps1
-├── build.sh
-├── dist/
-│   ├── atlas-blue.css
-│   ├── mint-pop.css
-│   └── obsidian-wave.css
-├── examples/
-│   ├── atlas-blue-template.html
-│   ├── mint-pop-template.html
-│   └── obsidian-wave-template.html
-├── scss/
-│   ├── source/
-│   │   ├── atlas-blue.scss
-│   │   ├── mint-pop.scss
-│   │   └── obsidian-wave.scss
-│   └── template/
-└── vendor/
-    ├── reveal.css
-    ├── reveal.js
-    └── plugin/highlight/
+  dist/                   # compiled theme CSS
+  examples/               # three editable decks
+  scss/source/            # semantic colors and typography per theme
+  scss/template/          # reveal.js base and shared layouts
+  vendor/                 # local reveal.js runtime
+  build.sh
+  build.ps1
+  THEME_SOURCE.md
 ```
 
-## Notes
-
-This kit bundles a minimal reveal.js runtime so decks can be opened directly from disk. For advanced reveal.js features, see the official documentation at <https://revealjs.com/>.
+For more reveal.js features, see [the official documentation](https://revealjs.com/).

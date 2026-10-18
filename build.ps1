@@ -9,11 +9,15 @@ New-Item -ItemType Directory -Force -Path $DistDir | Out-Null
 Write-Host "Building reveal.js themes..."
 
 npx sass `
-  "$ScssDir/obsidian-wave.scss:$DistDir/obsidian-wave.css" `
-  "$ScssDir/atlas-blue.scss:$DistDir/atlas-blue.css" `
-  "$ScssDir/mint-pop.scss:$DistDir/mint-pop.css" `
+  "$ScssDir/ersione-dark.scss:$DistDir/ersione-dark.css" `
+  "$ScssDir/ersione-light.scss:$DistDir/ersione-light.css" `
+  "$ScssDir/ersione-mint.scss:$DistDir/ersione-mint.css" `
   --no-source-map `
   --style=expanded
+
+if ($LASTEXITCODE -ne 0) {
+  throw "Sass build failed with exit code $LASTEXITCODE"
+}
 
 Write-Host ""
 Write-Host "Built:"
